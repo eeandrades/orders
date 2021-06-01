@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "f33f5d73-4a94-4d84-8710-7430a910c408",
+		"name": "Orders",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "OrderCreate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"clientId\": \"22fce06e-b7d9-46ea-a5f2-1dfb3987bd7e\",\r\n  \"items\": [\r\n    {\r\n      \"productId\": \"1b02f96e-39a0-428c-992f-1e495db615e9\",\r\n      \"amount\": 50\r\n    },\r\n    {\r\n      \"productId\": \"2b02f96e-39a0-428c-992f-1e495db615e9\",\r\n      \"amount\": 6\r\n    },\r\n    {\r\n      \"productId\": \"3b02f96e-39a0-428c-992f-1e495db615e9\",\r\n      \"amount\": 10\r\n    },\r\n    {\r\n      \"productId\": \"4b02f96e-39a0-428c-992f-1e495db615e9\",\r\n      \"amount\": 4\r\n    },\r\n    {\r\n      \"productId\": \"5b02f96e-39a0-428c-992f-1e495db615e9\",\r\n      \"amount\": 12\r\n    },\r\n    {\r\n      \"productId\": \"6b02f96e-39a0-428c-992f-1e495db615e9\",\r\n      \"amount\": 3\r\n    }\r\n\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api-url}}/orders",
+					"host": [
+						"{{api-url}}"
+					],
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"clientId\": \"22fce06e-b7d9-46ea-a5f2-1dfb3987bd7e\",\r\n  \"items\": [\r\n    {\r\n      \"productId\": \"1b02f96e-39a0-428c-992f-1e495db615e9\",\r\n      \"amount\": 50\r\n    },\r\n    {\r\n      \"productId\": \"2b02f96e-39a0-428c-992f-1e495db615e9\",\r\n      \"amount\": 6\r\n    },\r\n    {\r\n      \"productId\": \"3b02f96e-39a0-428c-992f-1e495db615e9\",\r\n      \"amount\": 10\r\n    },\r\n    {\r\n      \"productId\": \"4b02f96e-39a0-428c-992f-1e495db615e9\",\r\n      \"amount\": 4\r\n    },\r\n    {\r\n      \"productId\": \"5b02f96e-39a0-428c-992f-1e495db615e9\",\r\n      \"amount\": 12\r\n    },\r\n    {\r\n      \"productId\": \"6b02f96e-39a0-428c-992f-1e495db615e9\",\r\n      \"amount\": 3\r\n    }\r\n\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}/orders",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 31 May 2021 15:56:00 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"orderId\": \"d1eea5aa-b9c8-4fd7-bca1-9b824487b695\",\n    \"orderDate\": \"2021-05-31T16:01:24.7545632+00:00\",\n    \"isValid\": true,\n    \"messages\": []\n}"
+				},
+				{
+					"name": "Client not found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"clientId\": \"F2fce06e-b7d9-46ea-a5f2-1dfb3987bd7e\",\r\n  \"items\": [\r\n    {\r\n      \"productId\": \"1b02f96e-39a0-428c-992f-1e495db615e9\",\r\n      \"amount\": 50\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}/orders",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 31 May 2021 16:04:14 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"isValid\": false,\n    \"messages\": [\n        {\n            \"message\": \"Client not found\",\n            \"kind\": 0,\n            \"code\": \"E003\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "Product not found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"clientId\": \"22fce06e-b7d9-46ea-a5f2-1dfb3987bd7e\",\r\n  \"items\": [\r\n    {\r\n      \"productId\": \"1b02f96e-39a0-428c-992f-1e495db615e9\",\r\n      \"amount\": 50\r\n    },\r\n    {\r\n      \"productId\": \"Eb02f96e-39a0-428c-992f-1e495db615e9\",\r\n      \"amount\": 50\r\n    }    \r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}/orders",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 31 May 2021 16:09:05 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"orderId\": \"00000000-0000-0000-0000-000000000000\",\n    \"orderDate\": \"0001-01-01T00:00:00\",\n    \"isValid\": false,\n    \"messages\": [\n        {\n            \"message\": \"Product not found\",\n            \"kind\": 0,\n            \"code\": \"E004\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "GetOrder",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api-url}}/orders/37d8899d-d9c6-4848-ace9-3d9f4aaa5862",
+					"host": [
+						"{{api-url}}"
+					],
+					"path": [
+						"orders",
+						"37d8899d-d9c6-4848-ace9-3d9f4aaa5862"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

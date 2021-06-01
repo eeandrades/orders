@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Orders.Api.Rest.Model;
 using Orders.Api.Rest.Model.GetOrder;
-using Orders.Api.Rest.Model.OrderCreate;
+using Orders.Api.Rest.Model.CreateOrder;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,16 +38,16 @@ namespace Orders.Api.Rest.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(OrderCreateResponseModel))]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(CreateOrderResponseModel))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseModel))]
-        public async Task<ObjectResult> CreateOrder([FromServices] IMediator mediator, [FromBody] OrderCreateRequestModel request)
+        public async Task<ObjectResult> CreateOrder([FromServices] IMediator mediator, [FromBody] CreateOrderRequestModel request)
         {
             //converte de model para application
             ///TODO: usar auto mapper
-            var applicationRequest = new Application.Commands.Create.OrderCreateRequest()
+            var applicationRequest = new Application.Commands.Create.CreateOrderRequest()
             {
                 ClientId = request.ClientId,
-                Items = request.Items.Select(oi => new Application.Commands.Create.OrderCreateItem()
+                Items = request.Items.Select(oi => new Application.Commands.Create.CreateOrderItemItem()
                 {
                     Amount = oi.Amount,
                     ProductId = oi.ProductId
@@ -59,7 +59,7 @@ namespace Orders.Api.Rest.Controllers
 
 
             ///TODO: usar auto mapper
-            OrderCreateResponseModel response = new()
+            CreateOrderResponseModel response = new()
             {
                 OrderId = applicationResponse.OrderId,
                 OrderDate = applicationResponse.OrderDate,
@@ -76,7 +76,7 @@ namespace Orders.Api.Rest.Controllers
 
         [HttpGet()]
         [Route("{orderId})")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(OrderResponseModel))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetOrderResponseModel))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseModel))]
         public async Task<ObjectResult> GetOrder([FromServices] IMediator mediator, [FromRoute] Guid orderId)
         {
@@ -91,7 +91,7 @@ namespace Orders.Api.Rest.Controllers
 
 
             ///TODO: usar auto mapper
-            OrderResponseModel response = new()
+            GetOrderResponseModel response = new()
             {
                 Order = new OrderModel()
                 {

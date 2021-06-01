@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Orders.Api.Rest.Model.OrderCreate
+namespace Orders.Application.Commands.Create
 {
-    public class OrderCreateItemModel
+    public class CreateOrderItemItem
     {
         public Guid ProductId { get; set; }
 

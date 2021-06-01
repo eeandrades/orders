@@ -18,7 +18,7 @@ namespace Orders.Setup
             services.AddScoped<Domain.IProductRepository, Repository.Redis.ProductRepository>();
             services.AddScoped<Domain.IOrderRepository,  Repository.Redis.OrderRepository>();
             services.AddScoped<Domain.IOrderQuery, Repository.Redis.OrderRepository>();
-            services.AddScoped<Application.Commands.Create.OrderCreateValidator>();
+            services.AddScoped<Application.Commands.Create.CreateOrderValidator>();
         }
     }
 }

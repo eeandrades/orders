@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace Orders.Application.Commands.Create
 {
-    public class OrderCreateHandler : Handler<OrderCreateRequest, OrderCreateResponse>
+    public class CreateOrderHandler : Handler<CreateOrderRequest, CreateOrderResponse>
     {
         private readonly IProductRepository _productRepository;
         private readonly IClientRepository _clientRepository;
         private readonly IOrderRepository _orderRepository;
-        private readonly OrderCreateValidator _orderCreateValidator;
+        private readonly CreateOrderValidator _orderCreateValidator;
 
 
-        public OrderCreateHandler
-            (IProductRepository productRepository, IClientRepository clientRepository, IOrderRepository orderRepository, OrderCreateValidator orderCreateValidator)
+        public CreateOrderHandler
+            (IProductRepository productRepository, IClientRepository clientRepository, IOrderRepository orderRepository, CreateOrderValidator orderCreateValidator)
         {
             this._productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
             this._clientRepository = clientRepository ?? throw new ArgumentNullException(nameof(clientRepository));
@@ -24,7 +24,7 @@ namespace Orders.Application.Commands.Create
             this._orderCreateValidator = orderCreateValidator ?? throw new ArgumentNullException(nameof(orderCreateValidator));
         }
 
-        protected override Task<ValidationResult> DoValidateAsync(OrderCreateRequest command) => this._orderCreateValidator.ValidateAsync(command);
+        protected override Task<ValidationResult> DoValidateAsync(CreateOrderRequest command) => this._orderCreateValidator.ValidateAsync(command);
 
         private Product GetProduct(Guid productId)
         {
@@ -32,7 +32,7 @@ namespace Orders.Application.Commands.Create
             return product;
         }
 
-        async protected override Task<OrderCreateResponse> DoExecuteAsync(OrderCreateRequest command)
+        async protected override Task<CreateOrderResponse> DoExecuteAsync(CreateOrderRequest command)
         {
             var client = await this._clientRepository.FindById(command.ClientId);
 
@@ -51,7 +51,7 @@ namespace Orders.Application.Commands.Create
 
             await this._orderRepository.Insert(order);
 
-            return new OrderCreateResponse()
+            return new CreateOrderResponse()
             {
                 OrderId = order.Id,
                 OrderDate = order.OrderDate

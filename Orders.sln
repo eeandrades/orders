@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders.Setup", "Orders.Setu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders.Application.Test", "Orders.Application.Test\Orders.Application.Test.csproj", "{5F51B574-DC03-407A-ABBB-80166A3FD0BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.Repository.Redis", "Orders.Repository.Redis\Orders.Repository.Redis.csproj", "{F6619613-C231-493A-9A70-AFFF88DFF7A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders.Repository.Redis", "Orders.Repository.Redis\Orders.Repository.Redis.csproj", "{F6619613-C231-493A-9A70-AFFF88DFF7A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

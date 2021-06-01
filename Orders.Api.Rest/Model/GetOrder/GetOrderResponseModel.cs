@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Orders.Api.Rest.Model.GetOrder
 {
-    public class OrderResponseModel: ResponseModel
+    public class GetOrderResponseModel: ResponseModel
     {
         public OrderModel Order { get; init; }
     }

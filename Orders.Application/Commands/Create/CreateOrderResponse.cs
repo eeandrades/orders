@@ -3,7 +3,7 @@ using System;
 
 namespace Orders.Application.Commands.Create
 {
-    public class OrderCreateResponse: ResponseBase
+    public class CreateOrderResponse : ResponseBase
     {
         public Guid OrderId { get; set; }
 

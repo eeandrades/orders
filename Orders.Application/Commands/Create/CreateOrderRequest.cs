@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 namespace Orders.Application.Commands.Create
 {
-    public class OrderCreateRequest: RequestBase<OrderCreateResponse>
+    public class CreateOrderRequest : RequestBase<CreateOrderResponse>
     {
         public Guid ClientId { get; set; }
 
-        public IEnumerable<OrderCreateItem> Items { get; set; }
+        public IEnumerable<CreateOrderItemItem> Items { get; set; }
     }
 }

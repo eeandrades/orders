@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Orders.Application.Commands.Create
 {
-    public class OrderCreateValidator: Validator<OrderCreateRequest>
+    public class CreateOrderValidator: Validator<CreateOrderRequest>
     {
         private readonly IClientRepository _clientRepository;
         private readonly IProductRepository _productRepository;
 
-        public OrderCreateValidator(IClientRepository clientRepository, IProductRepository productRepository)
+        public CreateOrderValidator(IClientRepository clientRepository, IProductRepository productRepository)
         {
             this._clientRepository = clientRepository ?? throw new System.ArgumentNullException(nameof(clientRepository));
             this._productRepository = productRepository ?? throw new System.ArgumentNullException(nameof(productRepository));
@@ -25,7 +25,7 @@ namespace Orders.Application.Commands.Create
                 .WithMessage(OrderMessages.OrderMustHaveItem);
         }
 
-        public override Task<ValidationResult> ValidateAsync(ValidationContext<OrderCreateRequest> context, CancellationToken cancellation = default)
+        public override Task<ValidationResult> ValidateAsync(ValidationContext<CreateOrderRequest> context, CancellationToken cancellation = default)
         {
             var request = context.InstanceToValidate;
 
@@ -36,7 +36,7 @@ namespace Orders.Application.Commands.Create
             return base.ValidateAsync(context, cancellation);
         }
 
-        async private void ValidateOrderItems(ValidationContext<OrderCreateRequest> context, OrderCreateRequest request)
+        async private void ValidateOrderItems(ValidationContext<CreateOrderRequest> context, CreateOrderRequest request)
         {
             foreach (var orderItem in request.Items)
             {
@@ -52,7 +52,7 @@ namespace Orders.Application.Commands.Create
             }
         }
 
-        async private void ValidateClient(ValidationContext<OrderCreateRequest> context, OrderCreateRequest request)
+        async private void ValidateClient(ValidationContext<CreateOrderRequest> context, CreateOrderRequest request)
         {
             if (!await this._clientRepository.Exists(request.ClientId))
             {

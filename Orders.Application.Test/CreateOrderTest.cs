@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 namespace Orders.Application.Test
 {
     [TestClass]
-    public class OrderCreateTest
+    public class CreateOrderTest
     {
 
         private readonly Mock<IProductRepository> _productRepositoryMock = new Mock<IProductRepository>();
         private readonly Mock<IClientRepository> _clientRepositoryMock = new Mock<IClientRepository>();
         private readonly Mock<IOrderRepository> _orderRepositoryMock = new Mock<IOrderRepository>();
-        private readonly IRequestHandler<OrderCreateRequest, OrderCreateResponse> _orderCreateHandler;
+        private readonly IRequestHandler<CreateOrderRequest, CreateOrderResponse> _orderCreateHandler;
 
         #region configure clients
         private readonly static Guid SClientExistsId = Guid.NewGuid();
@@ -36,11 +36,11 @@ namespace Orders.Application.Test
         public readonly Product[] _products;
 
         #endregion
-        private OrderCreateItem[] CreateValidOrdersItems()
+        private CreateOrderItemItem[] CreateValidOrdersItems()
         {
             var randomQuantity = new Random(100);
 
-            return _products.Select(p => new OrderCreateItem()
+            return _products.Select(p => new CreateOrderItemItem()
             {
                 ProductId = p.Id,
                 Amount = randomQuantity.Next(1, 100)
@@ -49,9 +49,9 @@ namespace Orders.Application.Test
 
         }
 
-        private OrderCreateItem[] CreateInvalidOrderItens()
+        private CreateOrderItemItem[] CreateInvalidOrderItens()
         {
-            return new OrderCreateItem[]
+            return new CreateOrderItemItem[]
             {
                 new()
                 {
@@ -94,11 +94,11 @@ namespace Orders.Application.Test
 
         }
 
-        public OrderCreateTest()
+        public CreateOrderTest()
         {
-            var orderCreateValidator = new OrderCreateValidator(this._clientRepositoryMock.Object, this._productRepositoryMock.Object);
+            var orderCreateValidator = new CreateOrderValidator(this._clientRepositoryMock.Object, this._productRepositoryMock.Object);
 
-            this._orderCreateHandler = new OrderCreateHandler(
+            this._orderCreateHandler = new CreateOrderHandler(
                 this._productRepositoryMock.Object,
                 this._clientRepositoryMock.Object,
                 this._orderRepositoryMock.Object,
@@ -122,7 +122,7 @@ namespace Orders.Application.Test
         {
             #region arrange
 
-            var request = new OrderCreateRequest();
+            var request = new CreateOrderRequest();
             request.ClientId = SClientExistsId;
             request.Items = CreateValidOrdersItems();
             #endregion
@@ -144,9 +144,9 @@ namespace Orders.Application.Test
         {
             #region arrange
 
-            var request = new OrderCreateRequest();
+            var request = new CreateOrderRequest();
             request.ClientId = Guid.Empty;
-            request.Items = new OrderCreateItem[]
+            request.Items = new CreateOrderItemItem[]
             {
                 new()
                 {
@@ -176,9 +176,9 @@ namespace Orders.Application.Test
         {
             #region arrange
 
-            var request = new OrderCreateRequest();
+            var request = new CreateOrderRequest();
             request.ClientId = SClientExistsId;
-            request.Items = new OrderCreateItem[0];
+            request.Items = new CreateOrderItemItem[0];
             #endregion
 
 
@@ -201,7 +201,7 @@ namespace Orders.Application.Test
         {
             #region arrange
 
-            var request = new OrderCreateRequest();
+            var request = new CreateOrderRequest();
             request.ClientId = SClientNotFoundId;
             request.Items = CreateValidOrdersItems();
             #endregion
@@ -226,7 +226,7 @@ namespace Orders.Application.Test
         {
             #region arrange
 
-            var request = new OrderCreateRequest();
+            var request = new CreateOrderRequest();
             request.ClientId = SClientNotFoundId;
             request.Items = CreateInvalidOrderItens();
             #endregion
@@ -251,7 +251,7 @@ namespace Orders.Application.Test
         {
             #region arrange
 
-            var request = new OrderCreateRequest();
+            var request = new CreateOrderRequest();
             request.ClientId = SClientNotFoundId;
             request.Items = CreateInvalidOrderItens();
             #endregion
